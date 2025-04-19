@@ -3,6 +3,7 @@ import { redirect } from '@sveltejs/kit';
 
 export const actions = {
 logout: async ({ locals, cookies }) => {
+// If no user is logged in, redirect to home
 if (!locals.user) {
 redirect(302, '/');
 }
