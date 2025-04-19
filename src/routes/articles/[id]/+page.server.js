@@ -8,9 +8,11 @@ export async function load({params}) {
 
     let connection = await createConnection();
     let [rows] = await connection.execute('SELECT * FROM articles where id = ?', [id]);
+    const [comments] = await connection.execute('SELECT * FROM comments WHERE article_id = ?', [id]);
 
     return {
-        articles: rows
+        articles: rows,
+        comments: comments
     };
 }
 
@@ -31,5 +33,21 @@ export const actions = {
 		} else {
 			return { error: 'Error' };
 		}
+	},
+
+    comment: async ({ request }) => {
+		const formData = await request.formData();
+
+        
+		const article_id = formData.get('article_id');
+		const name = formData.get('name');
+		const comment = formData.get('comment');
+
+		const connection = await createConnection();
+
+		const [result] = await connection.execute(
+			'INSERT INTO comments (article_id, name, text) VALUES (?, ?, ?)',
+			[article_id, name, comment]
+		);
 	}
 };
