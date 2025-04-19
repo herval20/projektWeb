@@ -17,3 +17,19 @@ export async function load({locals}) {
 	};
 }
 
+export const actions = {
+	deleteArticle: async ({ request }) => {
+		const formData = await request.formData();
+		const id = formData.get('id');
+		const connection = await createConnection();
+		try {
+			const [result] = await connection.execute('DELETE FROM articles WHERE id = ?', [id]);
+		} catch (e) {
+			console.error(e);
+			return {
+				success: false,
+				message: 'Deletion not possible!'
+			};
+		}
+	}
+};
