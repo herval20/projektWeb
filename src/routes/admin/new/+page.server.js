@@ -20,6 +20,7 @@ export const actions = {
 		console.log(formData);
 
         const { url } = await put('projektPhotos/' + photo.name, photo, {
+            addRandomSuffix: true,
 			access: 'public',
 			token: BLOB_READ_WRITE_TOKEN
 		});
