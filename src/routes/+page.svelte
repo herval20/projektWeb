@@ -12,7 +12,7 @@
 	<div>
 		{#each data.articles as article (article.id)}
 			<div animate:flip>
-                <img src={article.image} alt="uploadedImage" />
+                <a href={`articles/${article.id}`}><img src={article.image} alt="uploadedImage" /></a>
 				<p>{article.votes} ❤️</p>
 			</div>
 		{/each}
