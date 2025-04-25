@@ -3,10 +3,10 @@
 	let { data } = $props();
 </script>
 
-<main class="bg-gray-900 min-h-screen px-4 sm:px-6 lg:px-12 py-8 text-white">
+<main class="bg-gray-900 min-h-screen px-4 sm:px-6 lg:px-12 py-8 text-white flex flex-col items-center">
 	<h1 class="text-3xl font-bold text-center mb-8">Insta Photos</h1>
 
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+	<div class="flex flex-col gap-8 w-full max-w-md">
 		{#each data.articles as article (article.id)}
 			<div
 				animate:flip
